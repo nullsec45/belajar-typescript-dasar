@@ -16,7 +16,7 @@ describe("Array", function () {
     });
 
     it("should support readonly tupple array", function () {
-        //  di bawah adalah tipe data t 
+        //  di bawah adalah tipe data tupple di mana ukuran variable dan tipe datanya sudah ditentukan di awal
         const person: readonly [string, string, number] = ["Fajar", "Khannedy", 10];
         console.info(person);
         console.info(person[0]);
