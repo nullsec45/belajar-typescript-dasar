@@ -1,5 +1,6 @@
 import { Seller } from "../src/seller"
 import { Employee, Manager } from "../src/employee";
+import { Person } from "../src/person";
 
 describe("interface", function () {
     it("should support in typescript", function () {
@@ -31,10 +32,6 @@ describe("interface", function () {
     });
 
     it("should support function in interface", function () {
-        interface Person {
-            name: string,
-            sayHello(name: string): string;
-        }
 
         const person: Person = {
             name: "Fajar",
@@ -44,5 +41,36 @@ describe("interface", function () {
         }
 
         console.info(person.sayHello("Gita"));
+    })
+
+    it("should support intersection types", function () {
+        interface HasName {
+            name: string
+        }
+
+        interface HasId {
+            id: string
+        }
+
+        type Domain = HasId & HasName;
+
+        const domain: Domain = {
+            id: "1",
+            name: "Fajar"
+        }
+
+        console.info(domain);
+    });
+
+    it("should support type assertions", function () {
+        const person: any = {
+            name: "Fajar",
+            age: 20
+        }
+
+        const person2: Person = person as Person;
+        // akan error karena function sayHello tidak ada di object person
+        // person.sayHello("Gita");
+        console.info(person2);
     })
 })
