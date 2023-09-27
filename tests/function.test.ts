@@ -26,4 +26,31 @@ describe("test function", function () {
 
         expect(sum(1, 2, 3, 4, 5)).toBe(15);
     })
+
+    it("should support optional parameter", function () {
+        function sayHello(firstName: string, lastName?: string): string {
+            if (lastName) {
+                return `Hello ${firstName} ${lastName}`;
+            } else {
+                return `Hello ${firstName}`;
+            }
+        }
+        expect(sayHello("Rama")).toBe("Hello Rama");
+        expect(sayHello("Rama Fajar")).toBe("Hello Rama Fajar");
+    })
+
+    it("should support function overloading", function () {
+        function callMe(value: number): number;
+        function callMe(value: string): string;
+        function callMe(value: any): any {
+            if (typeof value == "string") {
+                return value.toUpperCase();
+            } else {
+                return value * 10;
+            }
+
+        }
+        expect(callMe(10)).toBe(100);
+        expect(callMe("Fajar")).toBe("FAJAR");
+    })
 })
