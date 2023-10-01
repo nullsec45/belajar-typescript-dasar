@@ -53,4 +53,36 @@ describe("test function", function () {
         expect(callMe(10)).toBe(100);
         expect(callMe("Fajar")).toBe("FAJAR");
     })
-})
+
+    it("should function as parameter", function () {
+        function sayHello(name: string, filter: (name: string) => string): string {
+            return `Hello ${filter(name)}`;
+        }
+
+        function toUpper(name: string): string {
+            return name.toUpperCase();
+        }
+
+        expect(sayHello("Fajar", toUpper)).toBe("Hello FAJAR");
+    })
+
+    it("should anonymous function", function () {
+        function sayHello(name: string, filter: (name: string) => string): string {
+            return `Hello ${filter(name)}`;
+        }
+
+        expect(sayHello("Fajar", function (name: string): string {
+            return name.toUpperCase();
+        })).toBe(`Hello FAJAR`);
+    });
+
+    it("should arrow function", function () {
+        function sayHello(name: string, filter: (name: string) => string): string {
+            return `Hello ${filter(name)}`;
+        }
+
+        expect(sayHello("Fajar", (name: string): string => {
+            return name.toUpperCase();
+        })).toBe(`Hello FAJAR`);
+    });
+})  
